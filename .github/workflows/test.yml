@@ -1,4 +1,4 @@
-name: Build seeder on push, or PR to master
+name: Build Dnsseed on push, or PR to master
 
 env:
   APP: dnsseed
@@ -11,7 +11,7 @@ on:
 
 jobs:
   build:
-    name: Build seeder
+    name: Build Dnsseed
     runs-on: ubuntu-22.04
 
     strategy:
