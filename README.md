@@ -57,6 +57,7 @@ This repo builds [`dnsseed`] in an [auditable way](https://github.com/reddcoin-p
 
 > **NOTE:** For an always up-to-date list see: https://hub.docker.com/repository/docker/reddcoincore/dnsseed/tags
 
+* `v0.04`
 * `v0.03`
 * `v0.01`
 
@@ -68,7 +69,7 @@ This repo builds [`dnsseed`] in an [auditable way](https://github.com/reddcoin-p
 First pull the image from [Docker Hub]:
 
 ```bash
-docker pull reddcoincore/dnsseed:v0.03
+docker pull reddcoincore/dnsseed:v0.04
 ```
 
 > **NOTE:** Running above will automatically choose native architecture of your CPU.
@@ -92,7 +93,7 @@ docker run  -it  --rm  --detach \
     -v ./dnsseed:/src \
     -p 53:53 \
     --name dnsseed \
-    reddcoincore/dnsseed:v0.3
+    reddcoincore/dnsseed:v0.04
 ```
 
 That will run dnsseed such that:
@@ -110,7 +111,7 @@ Here is a docker-compose.yml
 services:
   reddcoin-seeder:
     container_name: dnsseed
-    image: reddcoincore/dnsseed:v0.03
+    image: reddcoincore/dnsseed:v0.04
     command: dnsseed -h dnsseed.example.com -n vps.example.com -p 53
     restart: on-failure
     volumes:
