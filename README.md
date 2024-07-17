@@ -42,7 +42,7 @@ This repo builds [`dnsseed`] in an [auditable way](https://github.com/reddcoin-p
 * Each _minor_ version is stored in a separate directory (for the ease of backporting patches)
 
 
-[`git-tags`]: https://github.com/lncm/docker-lnd/tags
+[`git-tags`]: https://github.com/reddcoin-project/docker-dnsseed/tags
 [`opentimestamps`]: https://github.com/opentimestamps/opentimestamps-client/blob/master/doc/git-integration.md#usage
 [Alpine]: https://github.com/reddcoin-project/docker-dnsseed/blob/master/0.03/Dockerfile#L6
 [`qemu`]: https://github.com/meeDamian/simple-qemu
