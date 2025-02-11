@@ -1,10 +1,10 @@
 services:
   reddcoin-seeder:
     container_name: dnsseed
-    image: reddcoincore/dnsseed:v0.03
-    command: dnsseed -h dnsseed.example.com -n vps.example.com -p 53
+    image: reddcoincore/dnsseed:v0.05
+    command: dnsseed -h dnsseed.example.com -n vps.example.com -p 53 -v 80001
     restart: on-failure
     volumes:
       - ./dnsseed:/src
     ports:
-      - 53:53/udp
+      - "53:53/udp"

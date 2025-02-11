@@ -57,6 +57,7 @@ This repo builds [`dnsseed`] in an [auditable way](https://github.com/reddcoin-p
 
 > **NOTE:** For an always up-to-date list see: https://hub.docker.com/repository/docker/reddcoincore/dnsseed/tags
 
+* `v0.05`
 * `v0.04`
 * `v0.03`
 * `v0.01`
@@ -69,7 +70,7 @@ This repo builds [`dnsseed`] in an [auditable way](https://github.com/reddcoin-p
 First pull the image from [Docker Hub]:
 
 ```bash
-docker pull reddcoincore/dnsseed:v0.04
+docker pull reddcoincore/dnsseed:v0.05
 ```
 
 > **NOTE:** Running above will automatically choose native architecture of your CPU.
@@ -79,7 +80,7 @@ docker pull reddcoincore/dnsseed:v0.04
 Or, to pull a specific CPU architecture:
 
 ```bash
-docker pull reddcoincore/dnsseed:v0.3
+docker pull reddcoincore/dnsseed:v0.05
 ```
 
 #### Start
@@ -93,7 +94,7 @@ docker run  -it  --rm  --detach \
     -v ./dnsseed:/src \
     -p 53:53 \
     --name dnsseed \
-    reddcoincore/dnsseed:v0.04
+    reddcoincore/dnsseed:v0.05
 ```
 
 That will run dnsseed such that:
@@ -111,8 +112,8 @@ Here is a docker-compose.yml
 services:
   reddcoin-seeder:
     container_name: dnsseed
-    image: reddcoincore/dnsseed:v0.04
-    command: dnsseed -h dnsseed.example.com -n vps.example.com -p 53
+    image: reddcoincore/dnsseed:v0.05
+    command: dnsseed -h dnsseed.example.com -n vps.example.com -p 53 -m info@example.com -v 80001
     restart: on-failure
     volumes:
       - ./dnsseed:/src
@@ -122,3 +123,14 @@ services:
 First, ensure that the `./dnsseed/` folder is in the directory containing docker-compose.yml.
 Then, Docker Compose will mount the `./dnsseed/` folder to `/src`.
 
+### Troubleshooting
+
+Typically, you'll need root privileges to listen to port 53 (name service).
+
+One solution is using an iptables rule (Linux only) to redirect it to
+a non-privileged port:
+
+$ iptables -t nat -A PREROUTING -p udp --dport 53 -j REDIRECT --to-port 15353
+
+If properly configured, this will allow you to run dnsseed in userspace, using
+the -p 15353 option.
